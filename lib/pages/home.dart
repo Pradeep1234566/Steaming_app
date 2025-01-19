@@ -35,10 +35,15 @@ class MyHome extends StatelessWidget {
                 child: Row(
                   children: [
                     Icon(Icons.person, color: Colors.white, size: 28),
-                    Spacer(),
-                    Image.asset(
-                      'asset/images/Icon.png', // Replace with your actual logo asset path
-                      height: 60,
+                    SizedBox(
+                      width: 100,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 20.0),
+                      child: Image.asset(
+                        'asset/images/Icon.png', // Replace with your actual logo asset path
+                        height: 60,
+                      ),
                     ),
                   ],
                 ),
