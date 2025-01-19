@@ -9,6 +9,7 @@ class MyHome extends StatelessWidget {
     'asset/images/Mars.jpg'
   ];
   final List<String> name = ['Axe', 'Seeker', 'Shaker', 'Mars'];
+  final List<String> views = ['1.2K', '2.3K', '1.5K', '1.8K'];
   MyHome({super.key});
 
   @override
@@ -89,21 +90,24 @@ class MyHome extends StatelessWidget {
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
                     crossAxisSpacing: 15,
-                    mainAxisSpacing: 15,
+                    mainAxisSpacing: 50,
                   ),
                   itemCount: Path.length,
                   itemBuilder: (context, index) {
                     return Grid(
                       path: Path[index],
-                      title:
-                          name[index], // Assuming Grid takes a `path` argument
+                      title: name[index],
+                      views:
+                          views[index], // Assuming Grid takes a `path` argument
                     );
                   },
                 ),
               ),
             ),
+            
           ],
         ),
+        
       ),
     );
   }

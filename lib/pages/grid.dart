@@ -3,61 +3,90 @@ import 'package:flutter/material.dart';
 class Grid extends StatelessWidget {
   final String path;
   final String title;
-  const Grid({required this.title, required this.path, super.key});
+  final String views;
+  const Grid(
+      {required this.title,
+      required this.path,
+      required this.views,
+      super.key});
 
   @override
   Widget build(BuildContext context) {
-    // Wrap the Container with a SingleChildScrollView to prevent Bottom Overflow error
-    return SingleChildScrollView(
-      child: Container(
-        // Set a fixed height to the Container to prevent it from taking the full screen height
-        height: 250,
-        decoration: BoxDecoration(
-          color: Colors.grey[900],
-          borderRadius: BorderRadius.circular(16),
+    return Container(
+      height: 180,
+      width: 150,
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [Colors.black, Colors.orange.shade700],
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(16),
-              child: Image.asset(
-                path,
-                height: 120,
-                fit: BoxFit.cover,
-              ),
+        borderRadius: BorderRadius.circular(20),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.5),
+            blurRadius: 10,
+            offset: Offset(0, 4),
+          ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(20),
+            child: Image.asset(
+              path,
+              height: 90,
+              width: 90,
+              fit: BoxFit.cover,
             ),
-            const SizedBox(height: 8),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Padding(
-                padding: const EdgeInsets.only(left: 20.0),
-                child: Text(
-                  title, // Use the title property instead of path
-                  style: TextStyle(
+          ),
+          const SizedBox(height: 10),
+          Text(
+            title,
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              fontSize: 16,
+            ),
+          ),
+          const SizedBox(height: 10),
+          Expanded(
+            // Wrap Row inside an Expanded widget to avoid overflow
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Container(
+                  margin: const EdgeInsets.only(left: 10, bottom: 10),
+                  padding: const EdgeInsets.all(5),
+                  child: Icon(
+                    Icons.play_arrow,
+                    size: 25,
                     color: Colors.white,
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
                   ),
                 ),
-              ),
+                Row(
+                  children: [
+                    Icon(
+                      Icons.visibility,
+                      size: 20,
+                      color: Colors.white70,
+                    ),
+                    const SizedBox(width: 5),
+                    Text(
+                      views,
+                      style: TextStyle(
+                        color: Colors.white70,
+                        fontSize: 12,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
             ),
-            const SizedBox(height: 4),
-            Text(
-              '0 views',
-              style: TextStyle(
-                color: Colors.grey[400],
-                fontSize: 14,
-              ),
-            ),
-            const Spacer(),
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.play_circle_fill,
-                  color: Colors.red, size: 32),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
